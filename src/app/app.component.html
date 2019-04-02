@@ -1,33 +1,20 @@
-<div class="container">
-  <h1>Welcome, {{userName}}!</h1>
+<app-task-list [childTaskList]="masterTaskList" (clickSender)="editTask($event)"></app-task-list>
 
-  <form>
-    <input [(ngModel)]="userName" type="text" name="user">
-  </form>
+
+
+
+
+<div *ngIf="selectedTask">
+  <h3>{{selectedTask.description}}</h3>
+  <p>Task Complete? {{selectedTask.done}}</p>
+  <h3>Edit task</h3>
+  <label for="description">Enter Task Description:</label>
+  <input id="description" [(ngModel)]="selectedTask.description">
   <br>
-
-  <h1>To do list</h1>
-
-  <ul>
-    <li [class]="priorityColor(task)" *ngFor="let task of tasks">{{task.description}}<button (click)="editTask(task)">Edit</button></li>
-  </ul>
-
-  <div *ngIf="selectedTask">
-    <h3>{{selectedTask.description}}</h3>
-    <p>Task Complete? {{selectedTask.done}}</p>
-    <h3>Edit task</h3>
-    <label for="description">Enter Task Description:</label>
-    <input id="description" [(ngModel)]="selectedTask.description">
-    <br>
-    <label for="priority">Enter Task Priority</label>
-    <br>
-    <input type="radio" [(ngModel)]="selectedTask.priority" value="1"> 1 (Low Priority)<br>
-    <input type="radio" [(ngModel)]="selectedTask.priority" value="2"> 2 (Medium Priority)<br>
-    <input type="radio" [(ngModel)]="selectedTask.priority" value="3"> 3 (High Priority)
-    <button (click)="finishedEditing()">Done</button>
-  </div>
-
-
-
-
+  <label for="priority">Enter Task Priority</label>
+  <br>
+  <input type="radio" [(ngModel)]="selectedTask.priority" value="1"> 1 (Low Priority)<br>
+  <input type="radio" [(ngModel)]="selectedTask.priority" value="2"> 2 (Medium Priority)<br>
+  <input type="radio" [(ngModel)]="selectedTask.priority" value="3"> 3 (High Priority)
+  <button (click)="finishedEditing()">Done</button>
 </div>
