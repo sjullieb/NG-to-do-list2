@@ -9,9 +9,9 @@ import { Task } from './models/task.models';
 export class AppComponent {
 
   masterTaskList: Task[] =[
-    new Task("Wash car", 1),
-    new Task("Cook dinner", 3),
-    new Task("Watch movie", 2)
+    new Task("Wash car", "1"),
+    new Task("Cook dinner", "3"),
+    new Task("Watch movie", "2")
   ];
   selectedTask: Task = null;
 
@@ -21,6 +21,10 @@ export class AppComponent {
 
   finishedEditing(){
     this.selectedTask = null;
+  }
+
+  addTask(newTask: Task) {
+    this.masterTaskList.push(newTask);
   }
 
 }
